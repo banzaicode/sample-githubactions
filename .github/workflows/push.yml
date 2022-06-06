@@ -33,6 +33,7 @@ jobs:
         KUBECTL_VERSION: "1.20"
       with:
         args: '"rollout status deployment/my-app"'
+  # proxy inverso
   #ngrok-watcher:
   #  name: Ngrok watcher
   #  runs-on: ubuntu-latest

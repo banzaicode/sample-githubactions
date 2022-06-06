@@ -8,4 +8,4 @@ spec:
     port: 80
     targetPort: http
   selector:
-    name: sample-gha
+    role: sample-gha
