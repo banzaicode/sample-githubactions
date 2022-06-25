@@ -52,7 +52,7 @@ jobs:
     # Push the Docker image to Google Container Registry
     - name: Publish
       run: |-
-        docker login -u="${{ secrets.DOCKER_USERNAME }}" -p="${{ secrets.DOCKER_PASSWORD }}"
+        ${{ secrets.DOCKER_PASSWORD }} | docker login --username="${{ secrets.DOCKER_USERNAME }}" --password-stdin
         docker push "banzaicode/${{ secrets.GKE_PROJECT }}/$IMAGE:$GITHUB_SHA"
 
     # Set up kustomize
