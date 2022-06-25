@@ -4,7 +4,7 @@ metadata:
   labels:
   name: sample-gha
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       role: sample-gha
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sample-gha
-        image: banzaicode/sample-githubactions
+        image: banzaicode/sample-githubactions:main
         ports:
         - containerPort: 80
           name: http
