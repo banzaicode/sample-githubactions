@@ -28,10 +28,11 @@ jobs:
         tag_with_sha: true
         tags: ${{ github.sha }}
   
-  setup-build-publish-deploy:
+  setup-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: production
+    needs: build-and-push
 
     steps:
     - name: Checkout
