@@ -21,18 +21,16 @@ jobs:
     needs: build-and-push
     steps:
     - name: deploy to cluster
-      uses: steebchen/kubectl@master
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      with:
-        args: set image --record deployment/sample-gha container=${{ github.repository }}:${{ github.sha }}
+      uses: steebchen/kubectl@2.0.0
+      with: # defaults to latest kubectl binary version
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        command: set image --record deployment/sample-gha container=${{ github.repository }}:${{ github.sha }}
     - name: verify deployment
-      uses: steebchen/kubectl@master
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        KUBECTL_VERSION: "1.20"
+      uses: steebchen/kubectl@2.0.0
       with:
-        args: '"rollout status deployment/my-app"'
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        version: v1.21.0 # specify kubectl binary version explicitly
+        command: rollout status deployment/sample-gha
   # proxy inverso
   #ngrok-watcher:
   #  name: Ngrok watcher
